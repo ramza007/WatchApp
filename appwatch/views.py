@@ -3,5 +3,5 @@ from django.http  import HttpResponse
 
 # Create your views here.
 def index(request):
-    return HttpResponse('Welcome to the neighbourhood')
-    # return render(index.html)
+    # return HttpResponse('Welcome to the neighbourhood')
+    return render( request, 'index.html')
