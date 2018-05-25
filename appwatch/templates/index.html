@@ -1,27 +1,40 @@
+ {% load bootstrap3 %} {% load static%}
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>WatchApp</title>
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    {% block styles %} {% bootstrap_css %} {% endblock %}
+
 </head>
-<!--STyles-->
+
+<!--Styles-->
 
 <style>
     .container{
-        padding: 10%;
-        text-align: center;
         background-color: blue;
-        border-radius: 12px;
+        text-align: center;
+        padding: 15%;
         color: white;
+        border-radius: 20px;
+        font-family: 'Times New Roman', Times, serif;
     }
 </style>
 
 <!--End of styles-->
+
+
+
+ {% include "navbar.html" %} {% block content %}
 <body>
     <div class="container">
-        <h1>Welcome to the neighbourhood</h1>
+        <h1>Welcome To the neighbourhood</h1>
     </div>
+    <!--Script files-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> {% bootstrap_javascript %} {% endblock %}
 </body>
+
 </html>

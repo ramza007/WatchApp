@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'bootstrap3'
+    'bootstrap3',
     'appwatch.apps.AppwatchConfig',
     'django.contrib.admin',
     'django.contrib.auth',
