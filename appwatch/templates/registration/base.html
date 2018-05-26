@@ -1,0 +1,21 @@
+ {% load bootstrap3 %} {% load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+        <link rel="shortcut icon" type="image/png" href="https://static1.squarespace.com/static/596e55041b631bb072abf784/t/5983596337c58150b473b608/1501177495645/faster-icon-png-0+copy.png?format=300w"
+        />
+       <title>WatchApp | {{title}}</title>
+     {% block styles %} {% bootstrap_css %} {% endblock %}
+
+</head>
+<style>
+</style>
+
+{% include "navbar.html" %}{% block scripts %}
+<body>
+     {% block content %} {% endblock %} 
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> {% bootstrap_javascript %} {% endblock %}
+</html>
