@@ -26,6 +26,45 @@
                     <a href="/admin/display/images/">Area</a>
                 </li>
             </ul>
+    <!--Drop Down list -->
+    <div class="navbar-right">
+    
+    
+    
+        {% if user.is_authenticated %}
+        <ul style="list-style:none; position: relative; margin-top:10px;float:right; color:rgb(19, 175, 167); margin-right: 6%;">
+            <li class="dropdown" style="color:rgb(17, 123, 175);">
+                <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">More
+                    <span class="caret"></span>
+                </a>
+    
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="/accounts/password/change">Change Password</a>
+                    </li>
+                    <li>
+                        <a href="/update/profile/">Update Profile</a>
+                    </li>
+                    <li>
+                        <a href="/post">Post</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </li>
+    
+            {% else %}
+    
+            <a class='btn btn-default' style="margin-top: 5%" href="/accounts/login">Login</a>
+    
+            <a class='btn btn-default' style="margin-top: 5%" href="{% url 'registration_register'  %}">Sign Up</a>
+    
+    
+        </ul>
+        {% endif %}
+    </div>
+    <!--End of drop down list-->
             <!-- Adding a search form  -->
             <div class="navbar-right">
 
@@ -43,46 +82,6 @@
                 </form>
             </div>
             <!-- search form end -->
-
-    <!--Drop Down list -->
-                <div class="navbar-right">
-                
-                
-                
-                    {% if user.is_authenticated %}
-                    <ul style="list-style:none; position: relative; margin-top:10px;float:right; color:rgb(19, 175, 167); margin-right: 6%;">
-                        <li class="dropdown" style="color:rgb(17, 123, 175);">
-                            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">More
-                                <span class="caret"></span>
-                            </a>
-                
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="/accounts/password/change">Change Password</a>
-                                </li>
-                                <li>
-                                    <a href="/update/profile/">Update Profile</a>
-                                </li>
-                                <li>
-                                    <a href="/post">Post</a>
-                                </li>
-                                <li>
-                                    <a href="/logout">Logout</a>
-                                </li>
-                            </ul>
-                        </li>
-                
-                        {% else %}
-                
-                        <a class='btn btn-default' style="margin-top: 5%" href="/accounts/login">Login</a>
-                
-                        <a class='btn btn-default' style="margin-top: 5%" href="{% url 'registration_register'  %}">Sign Up</a>
-                
-                
-                    </ul>
-                    {% endif %}
-                </div>
-    <!--End of drop down list-->
     </nav>
 </body>
 
