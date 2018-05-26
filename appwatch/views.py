@@ -4,6 +4,7 @@ from .models import Profile
 # ,Follow,Neighborhood,Post,Business,
 from .forms import ProfileForm 
 # ,NeighborhoodForm,PostMessageForm,PostBusinessForm,
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -21,7 +22,7 @@ def index(request):
 
 #---------------Profile-----------------#
 
-
+@login_required(login_url='/accounts/login')
 def create_profile(request):
     '''
     View function to view details of a hood

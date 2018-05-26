@@ -1,13 +1,45 @@
 {% extends 'base.html' %} {% load staticfiles%} {% load bootstrap3 %}
+<!--Styles-->
+
+
+<!--End of styles-->
 <!-- Styles block -->
-{% block styles %} {{block.super}}
-<link rel="stylesheet" href="{% static 'css/new-post.css'%}"> {% endblock %}
+{% block styles %} {{block.super}}{% endblock %}
 
 <!-- Content block -->
 {% block content %} {{block.super}}
+<style>
+    body{
+        background-image: url('/static/images/wall1.jpg');
+        background-size: cover;
+    }
+    .container{
+        padding-left: 20%;
+        background-color: black;
+        opacity: 0.94;
+        padding-top: 5%;
+        padding-right: 5%;
+        padding-left: 5%;
+        padding-bottom: 5%;
+        border-radius: 20px;
+        margin-top: 8%;
+        
+    }
 
+    .det{
+        border-radius: 20px;
+        margin-left: 20%;
+        margin-right: 20%;
+        background-color: white;
+        padding: 5%;
+        opacity: 0.89;
+
+    }
+</style>
+
+<body>
 <div class="container">
-    <div class="col-md-8 col-lg-8">
+    <div class="det">
         <form action="{% url 'createProfile'%}" method="post" enctype="multipart/form-data">
             {% csrf_token %} {% bootstrap_form form %}
             <input type="submit" class="btn btn-success btn-md" value="Post">
@@ -15,3 +47,4 @@
     </div>
 </div>
 {% endblock %}
+</body>
