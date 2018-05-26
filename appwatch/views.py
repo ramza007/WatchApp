@@ -1,12 +1,15 @@
 from django.shortcuts import render
-from django.http  import HttpResponse
+from django.http  import HttpResponse, Http404
 from .models import Profile 
 # ,Follow,Neighborhood,Post,Business,
-from .forms import ProfileForm 
-# ,NeighborhoodForm,PostMessageForm,PostBusinessForm,
+from .forms import ProfileForm, NeighborhoodForm
+# ,PostMessageForm,PostBusinessForm,
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+#-----------------Landing page--------------#
+
 def index(request):
     # images = Image.get_images()
     current_user = request.user
@@ -40,3 +43,25 @@ def create_profile(request):
     else:
         form = ProfileForm()
     return render(request, 'create-profile.html', {"form":form})
+
+
+#-------------------- Hood View Functions--------------------#
+
+@login_required(login_url='/accounts/login')
+def create_hood(request):
+    '''
+    View function to create and update the profile of the user
+    '''
+    current_user = request.user
+
+    if request.method == 'POST':
+        form = NeighborhoodForm(request.POST, request.FILES)
+        if form.is_valid:
+            k = form.save(commit=False)
+            k.user = current_user
+            k.save()
+            return redirect(index)
+
+    else:
+        form = NeighborhoodForm()
+    return render(request, 'new-hood.html', {"form":form})

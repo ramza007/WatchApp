@@ -1,49 +1,58 @@
- {% load bootstrap3 %} {% load static%}
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="https://static1.squarespace.com/static/596e55041b631bb072abf784/t/5983596337c58150b473b608/1501177495645/faster-icon-png-0+copy.png?format=300w" />
-    <title>WatchApp | Home</title>
-    {% block styles %} {% bootstrap_css %} {% endblock %}
-
-</head>
+ {% extends 'base.html' %} {% load static%}
+<!-- Styles block -->
+{% block styles %} {{block.super}} {% endblock %} {% block content %}
 
 <!--Styles-->
 
 <style>
-    .container{
+    .container {
         background-color: blue;
         background-attachment: fixed;
         opacity: 0.8;
         text-align: center;
-        padding: 13%;
+        /* padding: 13%;
+        padding-top: 5%;
+        padding-left: 5%; */
         color: white;
         border-radius: 20px;
         font-family: 'Times New Roman', Times, serif;
         margin-top: 10%;
+        font-size: 20px;
     }
 
-    body{
+    body {
         background-image: url('./static/images/wall.jpg');
     }
 </style>
 
 <!--End of styles-->
-
-
-
 <body>
-        {% include "navbar.html" %} {% block content %}
     <div class="container">
-        <h1>Welcome To the neighbourhood</h1>
-    </div>
-    <!--Script files-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> {% bootstrap_javascript %} {% endblock %}
-</body>
+        <section class="col-md-8 col-sm-12">
+            <h3 style="text-align:center"> {{est.estate}}</h3>
+            {%if postS %} {% for post in posts %}
+            <p>
+                <span style="color:rgb(81, 185, 25)"> {{post.user}}</span> {{post.message}}
+                <span style="color:rgb(81, 185, 25)"> allHoods</span>
+            </p>
+            {% endfor %} {% else %}
+            <p style="text-align:center">No activity Yet</p>
+            {% endif %}
+        </section>
 
-</html>
+
+        <section class="col-md-4 col-sm-12">
+            <h4 style="text-align:center"> Businesses in {{est.estate}}</h4>
+            {% if business %} {% for biz in business %}
+            <a href="{% url 'business' biz.id %}">
+                <p>{{biz.business_name}}</p>
+            </a>
+            {% endfor %} {% else %}
+            <p>No Business Posted Yet</p>
+            {% endif%}
+        </section>
+
+    </div>
+
+        {% endblock %}
+</body>

@@ -14,6 +14,8 @@ urlpatterns=[
     url(r'^$',views.index,name = 'index'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^update/profile/', views.create_profile, name='createProfile'),
+    url(r'^new/hood/',views.create_hood, name='newHood'),
+    # url(r'^home',views.home,name='hoodNews'),
 
 ]
 
