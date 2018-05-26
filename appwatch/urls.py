@@ -13,6 +13,8 @@ from django.conf.urls.static import static
 urlpatterns=[
     url(r'^$',views.index,name = 'index'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^create/profile/', views.create_profile, name='createProfile'),
+
 ]
 
 if settings.DEBUG:
