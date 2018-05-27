@@ -18,9 +18,9 @@ def index(request):
     est = Follow.objects.get(user=current_user)
     # business = Business.get_business_by_estate(est.estate)
     # posts = Post.get_posts_by_estate(est.estate)
-    return render(request, 'index.html', {"hoods":hoods} )
+    return render(request, 'index.html', {"est": est,"hoods":hoods} )
     
-    #  {"est": est,"title": title,"user": current_user,"posts":posts,"business": business,  "hoods":hoods })
+    #  {"title": title,"user": current_user,"posts":posts,"business": business,  "hoods":hoods })
 
 
 
