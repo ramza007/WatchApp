@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http  import HttpResponse, Http404
-from .models import Profile 
-# ,Follow,Neighborhood,Post,Business,
+from .models import Profile, Neighborhood
+# ,Follow,,Post,Business,
 from .forms import ProfileForm, NeighborhoodForm
 # ,PostMessageForm,PostBusinessForm,
 from django.contrib.auth.decorators import login_required
@@ -47,6 +47,15 @@ def create_profile(request):
 
 #-------------------- Hood View Functions--------------------#
 
+def view_neighborhoods(request):
+    # images = Image.get_images()
+    current_user = request.user
+    title = 'Timeline'
+
+    hoods = Neighborhood.get_neighborhoods
+
+    return render(request, 'estates.html', {"title": title, "user": current_user, "hoods":hoods })
+
 @login_required(login_url='/accounts/login')
 def create_hood(request):
     '''
@@ -65,3 +74,17 @@ def create_hood(request):
     else:
         form = NeighborhoodForm()
     return render(request, 'new-hood.html', {"form":form})
+
+@login_required(login_url='/accounts/login')
+def hood_details(request, hood_id):
+    '''
+    View function to view details of a hood
+    '''
+
+    if len(Follow.objects.all().filter(user=request.user))>0:
+        details = Neighborhood.get_specific_hood(hood_id)
+        exists = Follow.objects.all().get(user=request.user)
+    else:
+        details = Neighborhood.get_specific_hood(hood_id)
+        exists = 0
+    return render(request, 'hood-details.html',{"exists": exists,"details":details})

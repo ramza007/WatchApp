@@ -14,37 +14,34 @@
         background-size: cover;
     }
     .container{
-        padding-left: 20%;
+
         background-color: black;
         opacity: 0.94;
-        padding-top: 5%;
-        padding-right: 5%;
-        padding-left: 5%;
-        padding-bottom: 5%;
+        /* padding-top: 5%;
+        padding-bottom: 5%; */
         border-radius: 20px;
         margin-top: 8%;
         
     }
 
     .det{
+        margin-top: 8%;
         border-radius: 20px;
         margin-left: 20%;
         margin-right: 20%;
-        background-color: white;
+        background-color: black;
         padding: 5%;
-        opacity: 0.89;
+        opacity: 0.94;
 
     }
 </style>
 
 <body>
-<div class="container">
     <div class="det">
         <form action="{% url 'createProfile'%}" method="post" enctype="multipart/form-data">
             {% csrf_token %} {% bootstrap_form form %}
             <input type="submit" class="btn btn-success btn-md" value="Post">
         </form>
     </div>
-</div>
 {% endblock %}
 </body>

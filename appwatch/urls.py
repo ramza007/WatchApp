@@ -14,7 +14,10 @@ urlpatterns=[
     url(r'^$',views.index,name = 'index'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^update/profile/', views.create_profile, name='createProfile'),
-    url(r'^new/hood/',views.create_hood, name='newHood'),
+    url(r'^new/hood/$',views.create_hood, name='newHood'),
+    url(r'^all/hoods/',views.view_neighborhoods, name='allHoods'),
+    url(r'^neighborhood/(\d+)',views.hood_details, name='pickHood'),
+
     # url(r'^home',views.home,name='hoodNews'),
 
 ]
