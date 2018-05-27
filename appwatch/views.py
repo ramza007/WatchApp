@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse, Http404
-from .models import Profile, Neighborhood, Follow
-# Post,Business,
-from .forms import ProfileForm, NeighborhoodForm
-# ,PostMessageForm,PostBusinessForm,
+from .models import Profile, Neighborhood, Follow, Business
+# Post,,
+from .forms import ProfileForm, NeighborhoodForm, PostBusinessForm
+# ,PostMessageForm,,
 from django.contrib.auth.decorators import login_required
 
 
@@ -21,10 +21,10 @@ def index(request):
     title = 'WatchApp | Home'
     hoods = Neighborhood.get_neighborhoods
     est = Follow.objects.get(user=current_user)
-    # business = Business.get_business_by_estate(est.estate)
+    business = Business.get_business_by_estate(est.estate)
     # posts = Post.get_posts_by_estate(est.estate)
-    return render(request, 'index.html', {"est": est,"title": title,"user": current_user,"hoods":hoods })
-    #  {"posts":posts,"business": business })
+    return render(request, 'index.html', {"est": est,"title": title,"user": current_user,"hoods":hoods, "business": business})
+    #  {"posts":posts, })
 
 
 
@@ -146,3 +146,36 @@ def profile(request):
         info = Profile.objects.filter(user=7)
 
     return render(request, 'my-profile.html', {"title": title, "current_user": current_user, "info": info, })
+
+
+
+#-------------------Businesses------------#
+@login_required(login_url='/accounts/login')
+def create_business(request):
+    '''
+    View function to post a message
+    '''
+    current_user = request.user
+    est = Follow.objects.get(user=current_user)
+
+    if request.method == 'POST':
+        form = PostBusinessForm(request.POST, request.FILES)
+        if form.is_valid:
+            post = form.save(commit=False)
+            post.user = current_user
+            post.estate = est.estate
+            post.save()
+            return redirect(index)
+
+    else:
+        form = PostBusinessForm()
+    return render(request, 'new-business.html', {"form":form})
+
+@login_required(login_url='/accounts/login')
+def business_details(request, business_id):
+    '''
+    View function to view details of a hood
+    '''
+    details = Business.get_specific_business(business_id)
+
+    return render(request, 'business-details.html',{"details":details})

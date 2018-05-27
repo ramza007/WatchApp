@@ -23,6 +23,16 @@
     body {
         background-image: url('./static/images/wall.jpg');
     }
+
+    .container-1{
+        background-color: white;
+        text-align: center;
+        padding: 2%;
+        margin: 1%;
+        padding-bottom: 5%;
+        border-radius: 10px;
+    }
+
 </style>
 
 <!--End of styles-->
@@ -44,9 +54,11 @@
         <section class="col-md-4 col-sm-12">
             <h4 style="text-align:center"> Businesses in {{est.estate}}</h4>
             {% if business %} {% for biz in business %}
+        <div class="container-1">>
             <a href="{% url 'business' biz.id %}">
                 <p>{{biz.business_name}}</p>
             </a>
+        </div>
             {% endfor %} {% else %}
             <p>No Business Posted Yet</p>
             {% endif%}

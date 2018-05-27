@@ -19,6 +19,9 @@ urlpatterns=[
     url(r'^neighborhood/(\d+)',views.hood_details, name='pickHood'),
     url(r'^follow/(\d+)', views.follow, name='follow'),
     url(r'^profile/', views.profile, name='profile'),
+    url(r'^new/business/',views.create_business, name='newBusiness'),
+    url(r'^business/(\d+)',views.business_details, name='business'),
+
 
     # url(r'^home',views.home,name='hoodNews'),
 

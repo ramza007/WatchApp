@@ -1,0 +1,46 @@
+{% extends 'base.html' %}{% load static%}{% load bootstrap3 %}
+<!-- Styles block -->
+{% block styles %}{{block.super}}{% endblock %}
+
+
+<!-- Content block -->
+{% block content %}
+    {{block.super}}
+<style>
+    .card{
+        background-color: black;
+        color: white;
+        padding: 2%;
+        margin-right: 70%;
+        border-radius: 20px;
+        text-align: center;
+    }
+</style>
+    <div class="container">
+
+        <!-- Create Post form -->
+        <section class="col-md-9 col-sm-15">
+          <div>
+            
+            {% for info in details %}
+            <div class="card">
+                <p>{{info.business_name}}</p>
+                <p>{{info.email}}</p>
+            </div>
+                <img src="{{ info.cover_image.url }}"  class="img-responsive"style="height:60%; width:90%" >
+            {% endfor %}
+
+          </div>
+        </section>
+
+
+
+    </div>
+
+{% endblock %}
+
+<!-- Create Post form -->
+<div class="col-md-8 col-lg-8">
+    <p>{{details.population}}</p>
+      <p>{{details.neighborhood_name}}</p>
+</div>

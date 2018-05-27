@@ -99,3 +99,47 @@ class Follow(models.Model):
     def get_following(cls,user_id):
         following =  Follow.objects.filter(user=user_id).all()
         return following
+
+
+
+
+#-----------------------------Business modules-----------------------#
+class Business(models.Model):
+    '''
+    A class that defines the business blueprint
+    '''
+    cover_image = models.ImageField(upload_to = 'business/', null=True, blank=True)
+    business_name = models.CharField(max_length =30,null=True)
+    email =  models.EmailField(max_length=70,blank=True)
+    estate = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null=True,blank=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
+
+    def __str__(self):
+        return self.business_name
+
+    @classmethod
+    def get_specific_business(cls,id):
+        '''
+        fetches particular hooddeletes an exiting neighborhood
+        '''
+        business = cls.objects.filter(id=id)
+        return business
+
+
+    @classmethod
+    def get_businesses(cls):
+        '''
+        fetches particular hooddeletes an exiting neighborhood
+        '''
+        business = cls.objects.all()
+        return business
+
+    @classmethod
+    def get_business_by_estate(cls,hood_id):
+        '''
+        Method that gets all posts in a specific neighbourhood from the database
+        Returns:
+            messages : list of post objects from the database
+        '''
+        messages = cls.objects.all().filter(estate=hood_id)
+        return messages
