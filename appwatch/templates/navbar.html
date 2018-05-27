@@ -6,6 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
+<style>
+    /* Dropdown Button */
+.dropbtn {
+    background-color: rgba(46, 40, 40, 0.624);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    border-radius: 20px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: gray;
+}
+</style>
+
 <body>
     <nav class="navbar navbar-inverse" role="navigation" style="opacity: 0.98;">
         <div class="container-fluid">
@@ -20,15 +69,21 @@
             </div>
             <ul class="nav navbar-nav navbar-left">
                 <li>
-                    <a href="/all/hoods/">NeighbourHood</a>
-                </li>
-                <li>
                     <a href="/admin/display/images/">Area</a>
                 </li>
                 <li>
                     <a href="/profile">Profile</a>
                 </li>
+                <div class="dropdown">
+                    <button class="dropbtn">NeighbourHood</button>
+                    <div class="dropdown-content">
+                        <a href="/all/hoods">All Hoods</a>
+                        <a href="#">Move</a>
+                        <a href="#">Businesses</a>
+                    </div>
+                </div>
             </ul>
+
     <!--Drop Down list -->
     <div class="navbar-right">
     
