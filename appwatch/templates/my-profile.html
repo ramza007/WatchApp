@@ -36,6 +36,7 @@
         <div class=" well col-md-6 " style="padding:5px; border:2px; float:right; height:40%">
 
             <p style=" color:rgb(19, 175, 167); text-align:left; font-size:25px;"> My Posts</p>
+            <a href="/update/profile/">Update Profile</a>
             {% for pic in pics %} {% if pic %}
             <div class="col-md-8 col-sm-12">
                 <a href="{% url 'manageImage' pic.id  %}#">
