@@ -18,6 +18,7 @@ urlpatterns=[
     url(r'^all/hoods/',views.view_neighborhoods, name='allHoods'),
     url(r'^neighborhood/(\d+)',views.hood_details, name='pickHood'),
     url(r'^follow/(\d+)', views.follow, name='follow'),
+    url(r'^profile/', views.profile, name='profile'),
 
     # url(r'^home',views.home,name='hoodNews'),
 

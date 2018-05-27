@@ -6,6 +6,11 @@ from .forms import ProfileForm, NeighborhoodForm
 # ,PostMessageForm,PostBusinessForm,
 from django.contrib.auth.decorators import login_required
 
+
+from wsgiref.util import FileWrapper
+import mimetypes
+from django.conf import settings
+import os
 # Create your views here.
 
 #-----------------Landing page--------------#
@@ -114,3 +119,30 @@ def hood_details(request, hood_id):
         details = Neighborhood.get_specific_hood(hood_id)
         exists = 0
     return render(request, 'hood-details.html',{"exists": exists,"details":details})
+
+@login_required(login_url='/accounts/login')
+def profile(request):
+    '''
+    View function to display the profile of the logged in user when they click on the user icon
+    '''
+    current_user = request.user  # get the id of the current
+
+    try:
+
+        single_profile = Profile.objects.get(user=current_user.id)
+
+        title = f'{current_user.username}\'s'
+
+        info = Profile.objects.filter(user=current_user)
+
+        pics = Image.objects.filter(user=request.user.id).all()
+
+    except:
+
+        title = f'{current_user.username}'
+
+        # pics = Image.objects.filter(user=request.user.id).all()
+
+        info = Profile.objects.filter(user=7)
+
+    return render(request, 'my-profile.html', {"title": title, "current_user": current_user, "info": info, })

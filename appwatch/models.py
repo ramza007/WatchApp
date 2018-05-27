@@ -20,6 +20,7 @@ class Profile(models.Model):
         return self.name
 
 #---------------------Neighbourhood modules-----------------#
+
 class Neighborhood(models.Model):
     '''
     A class that defines the blueprint of a Neighborhood model
