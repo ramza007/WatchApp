@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse, Http404
-from .models import Profile, Neighborhood
-# ,Follow,,Post,Business,
+from .models import Profile, Neighborhood, Follow
+# Post,Business,
 from .forms import ProfileForm, NeighborhoodForm
 # ,PostMessageForm,PostBusinessForm,
 from django.contrib.auth.decorators import login_required
@@ -15,7 +15,7 @@ def index(request):
     current_user = request.user
     title = 'WatchApp | Home'
     hoods = Neighborhood.get_neighborhoods
-    # est = Follow.objects.get(user=current_user)
+    est = Follow.objects.get(user=current_user)
     # business = Business.get_business_by_estate(est.estate)
     # posts = Post.get_posts_by_estate(est.estate)
     return render(request, 'index.html', {"hoods":hoods} )
@@ -43,6 +43,32 @@ def create_profile(request):
     else:
         form = ProfileForm()
     return render(request, 'create-profile.html', {"form":form})
+
+@login_required(login_url='/accounts/login')
+def follow(request,hood_id):
+    '''
+    View function to allow user move to a different neighborhood_name
+    '''
+    current_user = request.user
+    estate = Neighborhood.objects.get(id=hood_id)
+
+    following = Follow(user=current_user, estate=estate)
+
+    # check_if_exist = len(Follow.objects.all().filter(user=current_user))
+    # if check_if_exist > 0:
+
+    check_if_exists = Follow.objects.filter(user=current_user).exists()
+
+    if check_if_exists == True:
+
+        Follow.objects.all().filter(user=current_user).delete()
+        Follow.objects.update_or_create(user=current_user, estate=estate)
+        # following.save()
+    else:
+        following.save()
+
+    return redirect(index)
+
 
 
 #-------------------- Hood View Functions--------------------#

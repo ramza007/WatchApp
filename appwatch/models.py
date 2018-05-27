@@ -79,3 +79,22 @@ class Neighborhood(models.Model):
         '''
         query = cls.objects.filter(name__icontains=search_term)
         return query
+
+
+
+#------------Follow Module-------------#
+class Follow(models.Model):
+    '''
+    Class that store a User and Profile follow neighborhood news
+    '''
+    user = models.ForeignKey(User)
+    estate = models.ForeignKey(Neighborhood)
+
+
+    def __str__(self):
+        return self.user.username
+
+    @classmethod
+    def get_following(cls,user_id):
+        following =  Follow.objects.filter(user=user_id).all()
+        return following
