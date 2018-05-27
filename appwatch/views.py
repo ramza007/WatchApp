@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 #-----------------Landing page--------------#
-
+@login_required(login_url='/accounts/login')
 def index(request):
     # images = Image.get_images()
     current_user = request.user
@@ -19,6 +19,7 @@ def index(request):
     # business = Business.get_business_by_estate(est.estate)
     # posts = Post.get_posts_by_estate(est.estate)
     return render(request, 'index.html', {"hoods":hoods} )
+    
     #  {"est": est,"title": title,"user": current_user,"posts":posts,"business": business,  "hoods":hoods })
 
 

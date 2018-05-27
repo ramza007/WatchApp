@@ -2,21 +2,32 @@
 
 
 <!-- Styles block -->
-{% block styles %} {{block.super}}
-<link rel="stylesheet" href="{% static 'css/new-post.css'%}"> {% endblock %}
+{% block styles %} {{block.super}} {% endblock %}
+
 
 <!-- Content block -->
 {% block content %} {{block.super}}
+<style>
+    p{
+        padding: 5%;
+        background-color: black;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .container{
+        text-align: center;
+    }
+</style>
 <div class="container">
 
     <!-- Create Post form -->
     <section class="col-md-5 col-sm-12">
-        <div class="col-md-8 col-lg-8">
-
+        <div>
             <p>Population : {{details.population}}</p>
             <p>Estate : {{details.neighborhood_name}}</p>
-            <p>{{details.id}}</p>
-            <p>{{exists.estate.id}}</p>
+            <p>Estate Number : {{details.id}}</p>
+            <p>Existing Estate: {{exists.estate.id}}</p>
 
             {% if exists.estate.id == details.id %}
             <a href=" {% url 'allHoods' %}">
@@ -26,19 +37,12 @@
             <a href=" {% url 'follow' details.id%}">
                 <button type="button" name="button" class="btn btn-primary btn-md  pull-right  ">Move Here</button>
             </a>
-
             {% endif %}
-
-
         </div>
     </section>
-
-
-
 </div>
 
 {% endblock %}
-
 <!-- Create Post form -->
 <div class="col-md-8 col-lg-8">
     <p>{{details.population}}</p>

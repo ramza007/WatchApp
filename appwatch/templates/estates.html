@@ -1,17 +1,42 @@
  {% extends 'base.html' %} {% load static%}
 <!-- Styles block -->
 {% block styles %} {{block.super}} {% endblock %} {% block content %}
+<style>
+    .container{
+        background-color: black;
+        padding: 5%;
+        border-radius: 20px;
+        margin: 5%;
+        /* padding-right: -22%;
+        padding-left: -22%; */
+        
+    }
 
-<section class="col-md-6 col-md-offset-3 col-sm-12">
-    <h4>All Neighbourhoods</h4>
-    {% for hood in hoods %}
-    <a href="{% url 'pickHood' hood.id %}">
-        <p>{{hood}}</p>
-    </a>
-    {% endfor %}
-</section>
+    body {
+        background-image: url('./static/images/wall.jpg');
+    }
 
+    h2{
+        font-family: 'Courier New', Courier, monospace;
+    }
 
+    .container{
+        font-family: 'Bowlby One SC', cursive;
+        font-size: 20px;
+    }
 
+</style>
 
-{% endblock %}
+<body>
+<section style="text-align: center;">
+        <h2 style="font-size: 30px;">All Neighbourhoods</h2>
+        {% for hood in hoods %}
+    <div class="container">
+        <a href="{% url 'pickHood' hood.id %}">
+            <p>{{hood}}</p>
+        </a>
+    </div>
+        {% endfor %}
+    </section>
+    {% endblock %}
+</body>
