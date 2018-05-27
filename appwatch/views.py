@@ -14,11 +14,11 @@ def index(request):
     # images = Image.get_images()
     current_user = request.user
     title = 'WatchApp | Home'
-    # hoods = Neighborhood.get_neighborhoods
+    hoods = Neighborhood.get_neighborhoods
     # est = Follow.objects.get(user=current_user)
     # business = Business.get_business_by_estate(est.estate)
     # posts = Post.get_posts_by_estate(est.estate)
-    return render(request, 'index.html' )
+    return render(request, 'index.html', {"hoods":hoods} )
     #  {"est": est,"title": title,"user": current_user,"posts":posts,"business": business,  "hoods":hoods })
 
 
