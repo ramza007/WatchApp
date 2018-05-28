@@ -1,1 +1,1 @@
-web: gunicorn appwatch.wsgi​ --log-file-
+web: gunicorn watch.wsgi​ --log-file-
