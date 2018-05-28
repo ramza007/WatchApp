@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Profile, Neighborhood, Business
-# ,Post,,
+from .models import Profile, Neighborhood, Business ,Post
 
 
 class ProfileForm(forms.ModelForm):
@@ -27,3 +26,11 @@ class PostBusinessForm(forms.ModelForm):
     class Meta:
         model = Business
         fields = ['cover_image','business_name', 'email']
+
+class PostMessageForm(forms.ModelForm):
+    '''
+    Class to create a form for an authenticated user to post a message
+    '''
+    class Meta:
+        model = Post
+        fields = ['image','image_name', 'message']

@@ -143,3 +143,47 @@ class Business(models.Model):
         '''
         messages = cls.objects.all().filter(estate=hood_id)
         return messages
+
+class Post(models.Model):
+    '''
+    A class that defines posts of the users
+    '''
+    image = models.ImageField(upload_to = 'photos/', null = True,blank=True,)
+    image_name = models.CharField(max_length=30)
+    message =models.TextField(max_length = 100, null =True,blank=True)
+    date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
+    estate = models.ForeignKey(Neighborhood,null =True,blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User)
+
+    class Meta:
+        ordering = ['-date_uploaded']
+
+    def save_post(self):
+        '''
+        Method to save an post in the database
+        '''
+        self.save()
+
+    def delete_post(self):
+        ''' Method to delete an post from the database'''
+        self.delete()
+
+    @classmethod
+    def get_posts(cls):
+        '''
+        Method that gets all posts from the database
+        Returns:
+            messages : list of post objects from the database
+        '''
+        messages = cls.objects.all()
+        return messages
+
+    @classmethod
+    def get_posts_by_estate(cls,hood_id):
+        '''
+        Method that gets all posts in a specific neighbourhood from the database
+        Returns:
+            messages : list of post objects from the database
+        '''
+        messages = cls.objects.all().filter(estate=hood_id)
+        return messages

@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse, Http404
-from .models import Profile, Neighborhood, Follow, Business
-# Post,,
-from .forms import ProfileForm, NeighborhoodForm, PostBusinessForm
-# ,PostMessageForm,,
+from .models import Profile, Neighborhood, Follow, Business, Post
+from .forms import ProfileForm, NeighborhoodForm, PostBusinessForm, PostMessageForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -71,6 +69,18 @@ def follow(request,hood_id):
         # following.save()
     else:
         following.save()
+
+    return redirect(index)
+
+@login_required(login_url='/accounts/login')
+def unfollow(request,id):
+    '''
+    View function unfollow other users
+    '''
+    current_user = request.user
+    estate = Neighborhood.objects.get(id=id)
+
+    following = Follow(user=current_user, estate=estate).delete()
 
     return redirect(index)
 
@@ -179,3 +189,8 @@ def business_details(request, business_id):
     details = Business.get_specific_business(business_id)
 
     return render(request, 'business-details.html',{"details":details})
+
+@login_required(login_url='/accounts/login')
+def new_comment(request, hood_id):
+    form = PostMessageForm(request.POST, request.FILES)
+    return render(request, 'new-message.html', {"form":form})

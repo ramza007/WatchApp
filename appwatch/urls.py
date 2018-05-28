@@ -18,9 +18,15 @@ urlpatterns=[
     url(r'^all/hoods/',views.view_neighborhoods, name='allHoods'),
     url(r'^neighborhood/(\d+)',views.hood_details, name='pickHood'),
     url(r'^follow/(\d+)', views.follow, name='follow'),
+    url(r'^unfollow/(\d+)', views.unfollow, name='unfollow'),
     url(r'^profile/', views.profile, name='profile'),
     url(r'^new/business/',views.create_business, name='newBusiness'),
     url(r'^business/(\d+)',views.business_details, name='business'),
+
+    # url(r'^manage/(\d+)',views.manage_image, name='manageImage'),
+    url(r'^comment/(\d+)', views.new_comment, name='Comment'),
+
+
 
 
     # url(r'^home',views.home,name='hoodNews'),
