@@ -22,6 +22,8 @@ urlpatterns=[
     url(r'^profile/', views.profile, name='profile'),
     url(r'^new/business/',views.create_business, name='newBusiness'),
     url(r'^business/(\d+)',views.business_details, name='business'),
+    url(r'^search/', views.search_results, name='search_results'),
+
 
     # url(r'^manage/(\d+)',views.manage_image, name='manageImage'),
     url(r'^comment/(\d+)', views.new_comment, name='Comment'),

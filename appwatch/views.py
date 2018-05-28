@@ -194,3 +194,14 @@ def business_details(request, business_id):
 def new_comment(request, hood_id):
     form = PostMessageForm(request.POST, request.FILES)
     return render(request, 'new-message.html', {"form":form})
+
+def search_results(request):
+    if 'photos' in request.GET and request.GET['photos']:
+        search_term = request.GET.get('photos')
+        searched_photo = Images.search_by_title(search_term)
+        photos = Images.objects.filter(name=searched_photo).all()
+        message = f"{search_term}"
+        return render(request, 'searched.html', {"message": message, "photos": searched_photo})
+    else:
+        message = 'Try Again'
+        return render(request, 'searched.html', {"message": message})
