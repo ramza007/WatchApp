@@ -58,6 +58,6 @@ A web application that allows you to be in the loop about everything happening i
 
 
 
-#### License under [***Apache-2.0***](https://github.com/ramza007/Kwachu/blob/master/LICENSE)
+#### License under [***Apache-2.0***](https://github.com/ramza007/WatchApp/blob/master/LICENSE)
 
 Copyright (C) 2018 ~ Reseni
